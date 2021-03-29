@@ -26,20 +26,20 @@ class App(tk.Tk):
         self.s0.set(0)
 
         # Labels & Entries
-        self.s2_label = tk.Label(self, text="S²").grid(row=0, column=0, columnspan=1)
+        self.s2_label = tk.Label(self, text="S²").place(x=10, y=1)
         self.s2_entry = tk.Entry(
             self, width=15, borderwidth=3, textvariable=self.s2
-        ).grid(row=1, column=0)
+        ).place(x=10, y=21)
 
-        self.s1_label = tk.Label(self, text="S¹").grid(row=2, column=0)
+        self.s1_label = tk.Label(self, text="S¹").place(x=10, y=56)
         self.s1_entry = tk.Entry(
             self, width=15, borderwidth=3, textvariable=self.s1
-        ).grid(row=3, column=0)
+        ).place(x=10, y=76)
 
-        self.s0_label = tk.Label(self, text="S⁰").grid(row=4, column=0)
+        self.s0_label = tk.Label(self, text="S⁰").place(x=10, y=111)
         self.s0_entry = tk.Entry(
             self, width=15, borderwidth=3, textvariable=self.s0
-        ).grid(row=5, column=0)
+        ).place(x=10, y=131)
 
     # Defining Plot Function
     def plotFunction(self, *args):
@@ -57,11 +57,12 @@ class App(tk.Tk):
         )  # plot the figure and define the size and resolution
         figure.add_subplot(111).plot(x, y)  # plot x and y
         chart = FigureCanvasTkAgg(figure, self)  # add the figure to the main window
-        chart.get_tk_widget().place(x=150, y=89)
+        chart.get_tk_widget().place(x=155, y=10)
         plt.grid()
 
 
 if __name__ == "__main__":
     app = App()
-    app.geometry("600x600+120+120")
+    app.title("Live Quadratic Plotter")
+    app.geometry("560x320")
     app.mainloop()
