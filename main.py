@@ -10,6 +10,7 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         # Creating Variables
+
         self.s2 = tk.StringVar()
         self.s1 = tk.StringVar()
         self.s0 = tk.StringVar()
@@ -56,10 +57,11 @@ class App(tk.Tk):
         )  # plot the figure and define the size and resolution
         figure.add_subplot(111).plot(x, y)  # plot x and y
         chart = FigureCanvasTkAgg(figure, self)  # add the figure to the main window
-        chart.get_tk_widget().grid(row=0, column=1, columnspan=2)
+        chart.get_tk_widget().place(x=150, y=89)
         plt.grid()
 
 
 if __name__ == "__main__":
     app = App()
+    app.geometry("600x600+120+120")
     app.mainloop()
