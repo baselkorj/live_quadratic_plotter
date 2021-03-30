@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import tkinter as tk
+import tkinter.ttk as ttk
 
 
 class App(tk.Tk):
@@ -11,9 +12,9 @@ class App(tk.Tk):
         super().__init__()
         # Creating Variables
 
-        self.s2 = tk.StringVar()
-        self.s1 = tk.StringVar()
-        self.s0 = tk.StringVar()
+        self.s2 = tk.IntVar()
+        self.s1 = tk.IntVar()
+        self.s0 = tk.IntVar()
 
         # Trace Function
         self.s2.trace("w", self.plotFunction)
@@ -41,17 +42,31 @@ class App(tk.Tk):
             self, width=15, borderwidth=3, textvariable=self.s0
         ).place(x=10, y=131)
 
+        # Trace Function
+        if self.s2 == None or self.s1 == None or self.s0 == None:
+            self.s2.set(0)
+            self.s1.set(0)
+            self.s0.set(0)
+
+            print("wating for input: ")
+
+        else:
+            self.s2.trace("w", self.plotFunction)
+            self.s1.trace("w", self.plotFunction)
+            self.s0.trace("w", self.plotFunction)
+
     # Defining Plot Function
     def plotFunction(self, *args):
         # Get Variables
-        s2_plot = int(self.s2.get())
-        s1_plot = int(self.s1.get())
-        s0_plot = int(self.s0.get())
+        s2_plot = self.s2.get()
+        s1_plot = self.s1.get()
+        s0_plot = self.s0.get()
 
+        s2 = int(s2_plot)
+        s1 = int(s1_plot)
+        s0 = int(s0_plot)
         x = np.linspace(-10, 10, num=1000)  # X limit and values
-        y = [
-            (s2_plot * i ** 2 + s1_plot * i + s0_plot) for i in x
-        ]  # Quadratic function
+        y = [(s2 * i ** 2 + s1 * i + s0) for i in x]  # Quadratic function
         figure = plt.figure(
             figsize=(4, 3), dpi=100
         )  # plot the figure and define the size and resolution
